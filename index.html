@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inox Hoàng Trung — Liên hệ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 35%,
+          #334155 70%,
+          #0f172a 100%
+        );
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+      /* Hiệu ứng nền lưới kim loại sáng nhẹ */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(56, 189, 248, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(148, 163, 184, 0.15) 0%,
+            transparent 50%
+          );
+        background-size:
+          40px 40px,
+          40px 40px,
+          100% 100%,
+          100% 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+      /* Hiệu ứng hạt sáng chuyển động nhẹ */
+      .particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: float 8s infinite ease-in-out;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translateY(-30px) translateX(10px);
+          opacity: 0.8;
+        }
+      }
+      /* Card chính — kính mờ hiện đại */
+      .card-metal {
+        background: linear-gradient(
+          135deg,
+          rgba(30, 41, 59, 0.9),
+          rgba(15, 23, 42, 0.95)
+        );
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow:
+          0 0 0 1px rgba(56, 189, 248, 0.1),
+          0 8px 32px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+      .card-metal:hover {
+        border-color: rgba(56, 189, 248, 0.3);
+        box-shadow:
+          0 0 20px rgba(56, 189, 248, 0.15),
+          0 12px 40px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transition: all 0.4s ease;
+      }
+      /* Viền avatar sáng chuyển động */
+      .avatar-ring {
+        background: linear-gradient(
+          135deg,
+          #38bdf8,
+          #64748b,
+          #e2e8f0,
+          #64748b,
+          #38bdf8
+        );
+        background-size: 300% 300%;
+        animation: metalShine 3s linear infinite;
+      }
+      @keyframes metalShine {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      /* Nút bấm phong cách Inox cao cấp */
+      .btn-inox {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-inox::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.15),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+      .btn-inox:hover::before {
+        left: 100%;
+      }
+      .btn-inox:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.35),
+          0 0 15px rgba(56, 189, 248, 0.2);
+      }
+      /* Hiệu ứng hiện ra */
+      .fade-in {
+        animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        opacity: 0;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .d1 {
+        animation-delay: 0.1s;
+      }
+      .d2 {
+        animation-delay: 0.2s;
+      }
+      .d3 {
+        animation-delay: 0.3s;
+      }
+      .d4 {
+        animation-delay: 0.4s;
+      }
+      .d5 {
+        animation-delay: 0.5s;
+      }
+      .d6 {
+        animation-delay: 0.6s;
+      }
+      .d7 {
+        animation-delay: 0.7s;
+      }
+      /* Chữ sáng chuyển màu */
+      .text-bright {
+        background: linear-gradient(
+          90deg,
+          #94a3b8,
+          #ffffff,
+          #38bdf8,
+          #ffffff,
+          #94a3b8
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: textGlow 3.5s linear infinite;
+      }
+      @keyframes textGlow {
+        0% {
+          background-position: 0% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      /* Khung hotline sáng chớp nhẹ */
+      .hotline-glow {
+        background: linear-gradient(
+          135deg,
+          rgba(56, 189, 248, 0.15),
+          rgba(148, 163, 184, 0.1)
+        );
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        box-shadow:
+          0 0 20px rgba(56, 189, 248, 0.1),
+          inset 0 0 20px rgba(56, 189, 248, 0.05);
+      }
+      /* Khung dịch vụ */
+      .service-card {
+        background: rgba(148, 163, 184, 0.06);
+        border: 1px solid rgba(148, 163, 184, 0.12);
+        transition: all 0.3s ease;
+      }
+      .service-card:hover {
+        background: rgba(56, 189, 248, 0.1);
+        border-color: rgba(56, 189, 248, 0.35);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(56, 189, 248, 0.1);
+      }
+    </style>
+  </head>
+  <body class="py-10 px-4">
+    <!-- Hạt sáng trang trí -->
+    <div
+      class="particle"
+      style="top: 10%; left: 15%; animation-delay: 0s"
+    ></div>
+    <div
+      class="particle"
+      style="top: 25%; left: 85%; animation-delay: 1.5s"
+    ></div>
+    <div class="particle" style="top: 50%; left: 8%; animation-delay: 3s"></div>
+    <div
+      class="particle"
+      style="top: 70%; left: 90%; animation-delay: 4.5s"
+    ></div>
+    <div
+      class="particle"
+      style="top: 85%; left: 30%; animation-delay: 2s"
+    ></div>
+
+    <div class="max-w-md mx-auto relative z-10">
+      <!-- ===== THÔNG TIN CHÍNH ===== -->
+      <div class="card-metal rounded-3xl p-6 md:p-8 mb-6 fade-in">
+        <!-- Avatar Inox -->
+        <div class="flex justify-center mb-6">
+          <div class="avatar-ring p-1.5 rounded-full">
+            <div
+              class="w-32 h-32 rounded-full bg-slate-900 flex items-center justify-center border-4 border-slate-800 overflow-hidden"
+            >
+              <img
+                src="image/ảnh.jpeg"
+                alt="Logo Inox Hoàng Trung"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+
+        <h1 class="text-center text-3xl font-bold text-white mb-2">
+          Inox <span class="text-bright">Hoàng Trung</span>
+        </h1>
+        <p class="text-center text-sky-300 font-semibold mb-2">
+          Thi công Inox & Nội thất Kim Loại
+        </p>
+        <p class="text-center text-sm text-slate-400 mb-6">
+          Thiết kế • Chế tác • Lắp đặt — Hồ Chí Minh và các tỉnh lân cận
+        </p>
+
+        <div
+          class="w-20 h-0.5 bg-gradient-to-r from-transparent via-sky-400 to-transparent mx-auto mb-6"
+        ></div>
+
+        <!-- Hotline nổi bật -->
+        <div class="hotline-glow rounded-2xl p-5 mb-6 text-center">
+          <p class="text-slate-200 font-semibold text-lg mb-1">
+            <i class="fa fa-phone-square mr-2 text-sky-400 text-xl"></i>
+            Hotline: <strong class="text-2xl text-white">0971.501.427</strong>
+          </p>
+          <p class="text-sm text-slate-400">
+            Tư vấn miễn phí • Báo giá chi tiết • Lắp đặt tận nơi
+          </p>
+        </div>
+      </div>
+
+      <!-- ===== NÚT LIÊN HỆ ===== -->
+      <div class="space-y-4 mb-8">
+        <!-- Zalo -->
+        <a
+          href="https://zalo.me/0971501427"
+          target="_blank"
+          class="block fade-in d1"
+        >
+          <div
+            class="btn-inox bg-[#0068FF] text-white rounded-2xl p-4 flex items-center justify-center gap-3 shadow-lg"
+          >
+            <i class="fa fa-comments text-2xl"></i>
+            <span class="font-bold text-lg">💬 Nhắn tin Zalo Tư vấn</span>
+          </div>
+        </a>
+
+        <!-- Facebook -->
+        <a
+          href="https://www.facebook.com/noithattrunghoang"
+          target="_blank"
+          class="block fade-in d2"
+        >
+          <div
+            class="btn-inox bg-[#1877F2] text-white rounded-2xl p-4 flex items-center justify-center gap-3 shadow-lg"
+          >
+            <i class="fa fa-facebook-square text-2xl"></i>
+            <span class="font-bold text-lg">📘 Xem Fanpage Cập nhật</span>
+          </div>
+        </a>
+
+        <!-- Website -->
+        <a
+          href="https://maitonnhaxuong.com/?fbclid=IwY2xjawVJR6NleHRuA2FlbQIxMABwZG9mBWJyaWQRMTQzUTVDS2pqbTdCRDZhWVFzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEewwpPzlH-3mH1ir8coz25E_ZVWcNqOhB7Mj7lR4zYuZPcuRDDZ-b9qOb9HAs_aem_y4GdLd0znmqbXFNhdE3_Dw"
+          target="_blank"
+          class="block fade-in d3"
+        >
+          <div
+            class="btn-inox bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 text-white rounded-2xl p-4 flex items-center justify-center gap-3 shadow-lg"
+          >
+            <i class="fa fa-globe text-2xl text-sky-300"></i>
+            <span class="font-bold text-lg">🌐 Xem Sản phẩm & Bảng giá</span>
+          </div>
+        </a>
+
+        <!-- TikTok -->
+        <a
+          href="https://www.tiktok.com/@cokhihoangngoctrung"
+          target="_blank"
+          class="block fade-in d4"
+        >
+          <div
+            class="btn-inox bg-black text-white rounded-2xl p-4 flex items-center justify-center gap-3 shadow-lg border border-slate-700"
+          >
+            <i class="fa fa-play-circle text-2xl text-pink-400"></i>
+            <span class="font-bold text-lg">🎬 Xem Video Thực tế</span>
+          </div>
+        </a>
+
+        <!-- Địa chỉ -->
+        <a
+          href="https://maps.app.goo.gl/Jb17kUFo6rHHEqqU7"
+          target="_blank"
+          class="block fade-in d5"
+        >
+          <div
+            class="btn-inox bg-gradient-to-r from-emerald-600 to-teal-500 text-white rounded-2xl p-4 flex items-center justify-center gap-3 shadow-lg"
+          >
+            <i class="fa fa-map-marker text-2xl"></i>
+            <span class="font-bold text-lg">📍 Xưởng tại Hồ Chí Minh</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- ===== DỊCH VỤ CHÍNH ===== -->
+      <div class="fade-in d6 mb-6">
+        <h3 class="text-center text-white font-bold text-lg mb-4">
+          ⚙️ Dịch Vụ Chế Tác Inox
+        </h3>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="service-card rounded-xl p-3 text-center">
+            <span class="text-2xl mb-2 block">🏪</span>
+            <p class="text-slate-200 font-semibold text-sm">Quầy Kinh Doanh</p>
+            <p class="text-slate-400 text-xs mt-1">
+              Quầy cafe, quầy ăn vặt, quầy cơm
+            </p>
+          </div>
+          <div class="service-card rounded-xl p-3 text-center">
+            <span class="text-2xl mb-2 block">🚚</span>
+            <p class="text-slate-200 font-semibold text-sm">Xe Đẩy Bán Hàng</p>
+            <p class="text-slate-400 text-xs mt-1">
+              Gấp gọn, di động, tùy kích thước
+            </p>
+          </div>
+          <div class="service-card rounded-xl p-3 text-center">
+            <span class="text-2xl mb-2 block">🪑</span>
+            <p class="text-slate-200 font-semibold text-sm">Bàn Ghế Inox</p>
+            <p class="text-slate-400 text-xs mt-1">
+              Bền đẹp, theo yêu cầu thiết kế
+            </p>
+          </div>
+          <div class="service-card rounded-xl p-3 text-center">
+            <span class="text-2xl mb-2 block">🔧</span>
+            <p class="text-slate-200 font-semibold text-sm">
+              Thi Công Theo Đơn
+            </p>
+            <p class="text-slate-400 text-xs mt-1">
+              Tất cả sản phẩm inox tùy chỉnh
+            </p>
+          </div>
+          <div class="service-card rounded-xl p-3 text-center col-span-2">
+            <span class="text-2xl mb-2 block">✅</span>
+            <p class="text-slate-200 font-semibold text-sm">
+              Bảo Hành & Bảo Trì
+            </p>
+            <p class="text-slate-400 text-xs mt-1">
+              Cam kết chất lượng — Bảo hành dài hạn
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ƯU ĐIỂM NỔI BẬT ===== -->
+      <div
+        class="fade-in d7 rounded-2xl border border-sky-500/20 bg-sky-500/5 p-4 text-center"
+      >
+        <p class="text-sky-300 font-semibold mb-2">
+          💎 Tại sao chọn chúng tôi?
+        </p>
+        <div class="flex justify-center flex-wrap gap-3 text-xs text-slate-300">
+          <span class="bg-slate-800/60 px-3 py-1.5 rounded-full"
+            >✓ Inox chất lượng cao 304/201</span
+          >
+          <span class="bg-slate-800/60 px-3 py-1.5 rounded-full"
+            >✓ Thi công chính xác</span
+          >
+          <span class="bg-slate-800/60 px-3 py-1.5 rounded-full"
+            >✓ Báo giá minh bạch</span
+          >
+          <span class="bg-slate-800/60 px-3 py-1.5 rounded-full"
+            >✓ Đúng tiến độ</span
+          >
+        </div>
+      </div>
+
+      <!-- Chân trang -->
+      <div class="text-center text-slate-500 text-xs mt-6">
+        <p>
+          © 2026 Nội Thất Hoàng Trung — Chế tác & Thi công chuyên nghiệp tại Hồ
+          Chí Minh
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
